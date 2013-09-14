@@ -10,8 +10,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #ifndef __HELPER_H__
 #define __HELPER_H__
 
-#include <cmath>
 #include "helperbase.h"
+#include <cmath>
+#include <functional>
+#include <numeric>
 
 namespace mns 
 {
@@ -33,12 +35,8 @@ namespace mns
 	template<typename T> 
 	T Helper1<T>::GetVectorNorm2Impl(Size_T n, const VectorT& v) const
 	{
-		T s = 0.0;
-		#pragma loop(hint_parallel(0)) // coh
-		for ( int i = 0; i < n; ++i ) 
-		{
-			s += v[i] * v[i];
-		}
+		T s = T();
+		s = inner_product(v.begin(), v.end(), v.begin(), s);
 		return std::sqrt(s);
 	}
 
@@ -46,11 +44,9 @@ namespace mns
 	typename Helper1<T>::VectorT Helper1<T>::GetResidualImpl(int n, const SpdMatrixT& a, const VectorT& x, const VectorT& b) const
 	{
 		VectorT r(n);
-		//#pragma loop(hint_parallel(0))
-		__pragma(loop(hint_parallel(0))) // coh
 		for( int i = 0; i < n; ++i )
 		{
-			r[i] = 0.0;
+			r[i] = T();
 			for( int j = 0; j < i; ++j )
 			{
 				r[i] += a[j + ((Size_T)i) * (i + 1) / 2] * x[j];

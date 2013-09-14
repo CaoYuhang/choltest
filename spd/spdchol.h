@@ -62,7 +62,7 @@ namespace mns
 		{
 			for( int k = 0; k <= i; ++k ) 
 			{
-				T s = T();
+				T s = T(0.0);
 				for( int j = 0; j < k; ++j )
 				{
 					s += m_[j + ((Size_T)i) * (i + 1) / 2] * m_[j + ((Size_T)k) * (k + 1) / 2]; // m[i][j] * m[k][j]
@@ -145,7 +145,7 @@ namespace mns
 		else
 		{
 			int n = GetMatrixDim();
-			T norm1 = 0.0;
+			T norm1 = T(0.0);
 			for( int j = 0; j < n; ++j )  
 			{
 				T s = T();
@@ -173,7 +173,7 @@ namespace mns
 
 				for( int i = 0; i < n; ++i )
 				{
-					e[i] = ( x[i] >= 0.0 ) ? 1.0 : 0.0;
+					e[i] = ( x[i] >= T(0.0) ) ? T(1.0) : T(0.0);
 				}
 
 				SolveImpl(e);
@@ -202,7 +202,7 @@ namespace mns
 
 				if ( maxAbsEl <= r )
 				{
-					renorm1 = 0.0;
+					renorm1 = T(0.0);
 					for( int i = 0; i < n; ++i ) 
 					{
 						renorm1 += fabs(x[i]);
@@ -210,8 +210,8 @@ namespace mns
 					break;
 				}
 
-				x.assign(n, 0.0);
-				x[ix] = 1.0;
+				x.assign(n, T(0.0));
+				x[ix] = T(1.0);
 			}
 			cond = norm1 * renorm1;
 		}
