@@ -143,9 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\cholesky_fu\CPP\defs.h" />
     <ClInclude Include="helper\helper1.h" />
     <ClInclude Include="helper\helperbase.h" />
