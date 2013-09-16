@@ -35,10 +35,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="choltest.cpp">
+    <ClCompile Include="service\stopwatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="service\stopwatch.cpp">
+    <ClCompile Include="test\choltest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

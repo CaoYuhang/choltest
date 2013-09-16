@@ -14,10 +14,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include <memory>
 #include <random>
 
-#include "./spd/spdchol.h"
-#include "./helper/helper1.h"
+#include "../spd/spdchol.h"
+#include "../helper/helper1.h"
 
-#include "./service/stopwatch.h"
+#include "../service/stopwatch.h"
 
 using std::cin;
 using std::cout;

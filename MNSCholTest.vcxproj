@@ -151,8 +151,8 @@
     <ClInclude Include="spd\spdchol.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="choltest.cpp" />
     <ClCompile Include="service\stopwatch.cpp" />
+    <ClCompile Include="test\choltest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
