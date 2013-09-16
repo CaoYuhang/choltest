@@ -353,7 +353,7 @@ namespace mns
 		if( t != T(0.0) ) 
 		{
 			w = u / t;
-			r = t * std::sqrt(1.0 + w * w);
+			r = t * std::sqrt(T(1.0) + w * w);
 			c = x / r;
 			s = y / r;
 		}
