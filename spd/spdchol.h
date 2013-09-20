@@ -23,7 +23,7 @@ namespace mns
 	// Calculates Cholesky decomposition and solves the system of linear equations with symmetric positive-definite matrix
 	// Cholesky factor is being updated by means of Givens rotations
 	public:
-		SpdChol(SpdMatrixT&& spdMatrixT, int n) : m_(std::move(spdMatrixT)) { this->n_ = n; this->isFactorized_ = false; this->cond_ = T(); };
+		SpdChol(SpdMatrixT&& spdMatrixT, int n) : SpdBase(n, false, T(0.0)), m_(std::move(spdMatrixT)) {};
 		const SpdMatrixT& GetMatrix();
 		~SpdChol() {};
 	private:

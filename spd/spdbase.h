@@ -42,6 +42,7 @@ namespace mns
 		virtual T	   GetRCondImpl() const { return T(); };
 
 		SpdBase() {};
+		SpdBase(int n, bool isFactorized, T cond) : n_(n), isFactorized_(isFactorized), cond_(cond) {};
 
 		int n_;
 		bool isFactorized_;
