@@ -96,12 +96,12 @@ bool Test(int n, int ix)
 		cout << "Cannot get a test matrix, incorrect input parameter (matrix dimension)." << endl;
 		return false;
 	}
-	cout <<"Time of the matrices generating: "  << sw.Elapsed() << " (s)\n";
+	cout <<"Time of the matrices generating = "  << sw.Elapsed() << " (s)\n";
 
 	SpdCholT cholReduced(std::move(reduced), n - 1); 
 	sw.Restart();
 	Status rc = cholReduced.Factorize();
-	cout <<"Time of the matrix factorizing: "  << sw.Elapsed() << " (s)\n";
+	cout <<"Time of the matrix factorizing = "  << sw.Elapsed() << " (s)\n";
 	if ( rc != Status::Success )
 	{
 		cout << "Cannot factorize the Reduced test matrix, it is not positive-definite one. rc = " << rc << endl;
@@ -121,11 +121,11 @@ bool Test(int n, int ix)
 	// Get assessment of the test matrix condition number
 	cout.unsetf(std::ios::fixed);
 	SetPrintParams(7, 1, std::ios::scientific);
-	cout << "The Original matrix reciprocal condition number estimate = " << cholOrig.GetRCond() << endl;
+	cout << "The Original matrix reciprocal condition number = " << cholOrig.GetRCond() << endl;
 
 	sw.Restart();
 	rc = cholOrig.UpdateDel(ix - 1);
-	cout <<"Time of the matrix factor recalculating: "  << sw.Elapsed() << " (s)\n";
+	cout <<"Time of the matrix factor recalculating = "  << sw.Elapsed() << " (s)\n";
 	if ( rc != Status::Success )
 	{
 		cout << "Cannot calculate the updated Cholesky factor of the Test matrix. rc = " << rc << endl;
@@ -145,7 +145,7 @@ bool Test(int n, int ix)
 
 	Helper1T hlp;
 	auto rn = hlp.GetVectorNorm2(sz, diff);
-	cout << "Norm of diference of the Orginal(recalculated) and Reduced factors: " << rn << endl;
+	cout << "Norm of diference of the Orginal(recalculated) and Reduced factors = " << rn << endl;
 
 	VectorT b1(n1, 1);
 	rc = cholReduced.Solve(b1);
@@ -157,7 +157,7 @@ bool Test(int n, int ix)
 		b1[i] -= b2[i];
 	}
 	rn = hlp.GetVectorNorm2(n1, b1);
-	cout << "Norm of diference of the solutions: " << rn << endl;
+	cout << "Norm of diference of the solutions = " << rn << endl;
 
 	return true;
 }
