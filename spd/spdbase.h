@@ -28,29 +28,23 @@ namespace mns
 		Status Solve(VectorT& b) const { return SolveImpl(b); };
 		T      GetRCond() const { return GetRCondImpl(); };
 
-		int    GetMatrixDim() const { return n_; };
-		bool   IsFactorized() const { return isFactorized_; };
+		int    GetMatrixDim() const { return GetMatrixDimImpl(); };
+		bool   IsFactorized() const { return IsFactorizedImp(); } //{ return GetRCondImpl() > T(0.0); };
+		explicit operator bool() const { return IsFactorized(); }
+		
+		virtual ~SpdBase() = default;
 
-		// explicit operator bool() const { return isFactorized_; }
-
-		virtual ~SpdBase() {};
-	protected:
-		virtual	Status FactorizeImpl() = 0;
-		virtual Status SolveImpl(VectorT& b) const = 0;
-		virtual Status UpdateAddImpl(VectorT& a) { return Status::Failure; };
-		virtual Status UpdateDelImpl(int ix) { return Status::Failure; };
-		virtual T	   GetRCondImpl() const { return T(); };
-
-		SpdBase() {};
-		SpdBase(int n, bool isFactorized, T cond) : n_(n), isFactorized_(isFactorized), cond_(cond) {};
-
-		int n_;
-		bool isFactorized_;
-		T cond_;
+		SpdBase(const SpdBase&) = delete;
+		SpdBase& operator =(const SpdBase&) = delete;
+		SpdBase& operator =(SpdBase&&) = delete;
 	private:
-    	SpdBase(const SpdBase&);
-		SpdBase& operator =(const SpdBase&);
-		SpdBase& operator =(SpdBase&&);
+		virtual	Status FactorizeImpl() = 0;
+		virtual Status SolveImpl(VectorT& b) const  = 0;
+		virtual Status UpdateAddImpl(VectorT& a) = 0;
+		virtual Status UpdateDelImpl(int ix) = 0;
+		virtual int    GetMatrixDimImpl() const = 0;
+		virtual T	   GetRCondImpl() const  = 0;
+		virtual bool   IsFactorizedImp() const  = 0;
 	};
 
 } // end of MNS namespace
